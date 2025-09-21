@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health & Fitness Blog</title>
+  <meta name="description" content="Articles on nutrition, fitness, and wellness with AI-generated health tips.">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-4 text-center shadow-md">
+    <h1 class="text-2xl font-bold">📰 Health & Fitness Blog</h1>
+    <a href="http://localhost/Ai%20Health%20&%20Fitness/index.php" class="hover:text-blue-600">Home</a>
+    <p class="text-sm">  <a href="http://localhost/Ai%20Health%20&%20Fitness/index.php" class="hover:text-blue-600">Home</a>      Nutrition • Fitness • Wellness  </p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto p-6 space-y-12">
+    
+    <!-- Articles Section -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">📚 Latest Articles</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Article 1 -->
+        <article class="bg-white p-5 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-bold">🥗 10 Superfoods for Daily Nutrition</h3>
+          <p class="text-gray-600 mt-2">Boost your immunity and energy with these nutrient-rich foods that are easy to include in your diet.</p>
+          <a href="#" class="text-blue-600 font-medium mt-3 inline-block">Read More →</a>
+        </article>
+        <!-- Article 2 -->
+        <article class="bg-white p-5 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-bold">💪 Quick 15-Minute Full Body Workout</h3>
+          <p class="text-gray-600 mt-2">Short on time? Burn calories and build strength with this no-equipment workout.</p>
+          <a href="#" class="text-blue-600 font-medium mt-3 inline-block">Read More →</a>
+        </article>
+        <!-- Article 3 -->
+        <article class="bg-white p-5 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-bold">🛌 Sleep & Recovery for Muscle Growth</h3>
+          <p class="text-gray-600 mt-2">Learn why sleep and recovery are just as important as your training sessions.</p>
+          <a href="#" class="text-blue-600 font-medium mt-3 inline-block">Read More →</a>
+        </article>
+        <!-- Article 4 -->
+        <article class="bg-white p-5 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-bold">🧘 Yoga for Stress Relief</h3>
+          <p class="text-gray-600 mt-2">Discover how yoga can help you manage stress and improve overall mental wellness.</p>
+          <a href="#" class="text-blue-600 font-medium mt-3 inline-block">Read More →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- AI Tips Section -->
+    <section class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">🤖 AI-Generated Health Tips</h2>
+      <p id="aiTip" class="text-gray-700 italic">Click below to get a smart health tip!</p>
+      <button onclick="generateTip()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        Generate Tip
+      </button>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center p-4 mt-10">
+    © 2025 FitLife Blog. All rights reserved.
+  </footer>
+
+  <!-- Script for AI Tips -->
+  <script>
+    const tips = [
+      "💧 Drink at least 8 glasses of water daily to stay hydrated.",
+      "🥦 Include more fiber-rich foods for better digestion.",
+      "🏃 Do 30 minutes of exercise every day for overall health.",
+      "🛌 Sleep 7-9 hours daily for better recovery.",
+      "🍎 Replace sugary snacks with fresh fruits.",
+      "🧘 Practice mindfulness or meditation to reduce stress.",
+      "⚡ Always warm-up before workouts to prevent injuries."
+    ];
+
+    function generateTip() {
+      const randomIndex = Math.floor(Math.random() * tips.length);
+      document.getElementById("aiTip").innerText = tips[randomIndex];
+    }
+  </script>
+</body>
+</html>

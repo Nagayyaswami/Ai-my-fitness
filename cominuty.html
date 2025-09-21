@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitAI — Community</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white font-bold">AI</div>
+        <div class="font-semibold">FitAI — Community</div>
+        <a href="http://localhost/Ai%20Health%20&%20Fitness/index.php" class="font-semibold">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <!-- Tabs -->
+    <div class="flex gap-2 items-center mb-6">
+      <button onclick="showTab('challenges')" id="btnChallenges" class="px-4 py-2 bg-blue-600 text-white rounded">Challenges</button>
+      <button onclick="showTab('leaderboard')" id="btnLeaderboard" class="px-4 py-2 bg-gray-200 rounded">Leaderboard</button>
+      <button onclick="showTab('forum')" id="btnForum" class="px-4 py-2 bg-gray-200 rounded">Forum</button>
+    </div>
+
+    <!-- Challenges Section -->
+    <section id="challenges" class="">
+      <h2 class="text-xl font-bold mb-3">Active Challenges</h2>
+      <div id="challengeList" class="grid gap-4 sm:grid-cols-2"></div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="hidden">
+      <h2 class="text-xl font-bold mb-3">Leaderboard</h2>
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="text-sm text-gray-500 border-b">
+            <th class="px-4 py-2">Rank</th>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Points</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </section>
+
+    <!-- Forum Section -->
+    <section id="forum" class="hidden">
+      <h2 class="text-xl font-bold mb-3">Forum</h2>
+      <form id="postForm" class="mb-4 space-y-2">
+        <input id="nameInput" placeholder="Your name" class="w-full border rounded p-2" />
+        <textarea id="contentInput" placeholder="Write something..." class="w-full border rounded p-2" rows="3"></textarea>
+        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">Post</button>
+      </form>
+      <div id="posts" class="space-y-4"></div>
+    </section>
+  </main>
+
+  <script>
+    // Data
+    let challenges = [
+      { id: 1, title: "30-Day Plank Challenge", points: 50 },
+      { id: 2, title: "10K Steps / Day", points: 30 },
+      { id: 3, title: "Pushup Progress", points: 40 }
+    ];
+    let leaderboard = [
+      { name: "Anjali", points: 150 },
+      { name: "Rohit", points: 120 },
+      { name: "Priya", points: 90 }
+    ];
+    let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+
+    // Tabs
+    function showTab(tab){
+      document.getElementById("challenges").classList.add("hidden");
+      document.getElementById("leaderboard").classList.add("hidden");
+      document.getElementById("forum").classList.add("hidden");
+      document.getElementById(tab).classList.remove("hidden");
+      document.querySelectorAll("button[id^='btn']").forEach(b=> b.className = "px-4 py-2 bg-gray-200 rounded");
+      document.getElementById("btn"+tab.charAt(0).toUpperCase()+tab.slice(1)).className = "px-4 py-2 bg-blue-600 text-white rounded";
+      if(tab==="challenges") renderChallenges();
+      if(tab==="leaderboard") renderLeaderboard();
+      if(tab==="forum") renderPosts();
+    }
+
+    // Challenges
+    function renderChallenges(){
+      let container = document.getElementById("challengeList");
+      container.innerHTML = "";
+      challenges.forEach(c=>{
+        let div = document.createElement("div");
+        div.className = "p-4 bg-white shadow rounded";
+        div.innerHTML = `
+          <div class='font-semibold mb-2'>${c.title}</div>
+          <button onclick='completeChallenge(${c.id})' class='px-3 py-1 bg-blue-600 text-white rounded'>Mark Complete</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function completeChallenge(id){
+      let c = challenges.find(x=>x.id===id);
+      let you = leaderboard.find(x=>x.name==="You");
+      if(!you){ you = {name:"You", points:0}; leaderboard.push(you); }
+      you.points += c.points;
+      alert(`You completed ${c.title} and earned ${c.points} points!`);
+      renderLeaderboard();
+    }
+
+    // Leaderboard
+    function renderLeaderboard(){
+      leaderboard.sort((a,b)=> b.points-a.points);
+      let tbody = document.getElementById("leaderboardBody");
+      tbody.innerHTML = "";
+      leaderboard.forEach((u,i)=>{
+        let row = `<tr class='border-b'><td class='px-4 py-2'>${i+1}</td><td class='px-4 py-2'>${u.name}</td><td class='px-4 py-2'>${u.points}</td></tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+
+    // Forum
+    document.getElementById("postForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let name = document.getElementById("nameInput").value || "Anonymous";
+      let content = document.getElementById("contentInput").value;
+      if(!content) return;
+      posts.unshift({name, content, likes:0});
+      localStorage.setItem("posts", JSON.stringify(posts));
+      document.getElementById("nameInput").value="";
+      document.getElementById("contentInput").value="";
+      renderPosts();
+    });
+
+    function renderPosts(){
+      let container = document.getElementById("posts");
+      container.innerHTML = posts.length?"":"<p class='text-gray-500'>No posts yet.</p>";
+      posts.forEach((p,i)=>{
+        let div = document.createElement("div");
+        div.className = "p-4 bg-white shadow rounded";
+        div.innerHTML = `
+          <div class='font-semibold'>${p.name}</div>
+          <p class='mt-1'>${p.content}</p>
+          <button onclick='likePost(${i})' class='mt-2 px-3 py-1 border rounded'>Like (${p.likes})</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function likePost(i){
+      posts[i].likes++;
+      localStorage.setItem("posts", JSON.stringify(posts));
+      renderPosts();
+    }
+
+    // Init
+    renderChallenges();
+  </script>
+</body>
+</html>

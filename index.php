@@ -1,0 +1,309 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
+
+<!--
+AI Health & Fitness Planner - Landing Page
+Single-file HTML using Tailwind CDN for quick preview/edit.
+You can save this as `index.html` and open in a browser.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Health & Fitness Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Personal AI fitness coach: meals, workouts & progress tracking." />
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+  <!-- NAVBAR -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-5">
+        <a href="#" class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white font-bold">AI</div>
+          <span class="font-semibold text-lg">FitAI</span>
+        </a>
+
+        <nav class="hidden md:flex gap-6 items-center text-sm">
+          <a href="http://localhost/Ai%20Health%20&%20Fitness/index.php" class="hover:text-blue-600">Home</a>
+          <a href="#features" class="hover:text-blue-600">Features</a>
+          <a href="#how" class="hover:text-blue-600">How it Works</a>
+          <a href="#pricing" class="hover:text-blue-600">Pricing</a>
+          <a href="http://127.0.0.1:5500/cominuty.html" class="hover:text-blue-600">Community</a>
+          <a href="http://127.0.0.1:5500/blog.html" class="hover:text-blue-600">Blog</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="http://localhost/Ai%20Health%20&%20Fitness/login.php" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">Sign In</a>
+          <a href="http://localhost/Ai%20Health%20&%20Fitness/register.php" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">Start Free</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
+          <div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Your Personal <span class="text-blue-600">AI Fitness Coach</span></h1>
+            <p class="mt-6 text-gray-600 max-w-xl">Custom workout plans, nutrition, and progress tracking — built by AI and tailored to your goals. Start free and see results in weeks.</p>
+
+            <div class="mt-8 flex gap-3">
+              <a href="http://localhost/Ai%20Health%20&%20Fitness/register.php" class="px-6 py-3 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">Start Your Free Trial</a>
+              <a href="#features" class="px-6 py-3 border rounded-md">See Features</a>
+            </div>
+
+            <ul class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <li class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">🏋️</div>
+                <div>
+                  <div class="text-sm font-semibold">Workouts</div>
+                  <div class="text-xs text-gray-500">Tailored routines</div>
+                </div>
+              </li>
+              <li class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-yellow-100 flex items-center justify-center">🍎</div>
+                <div>
+                  <div class="text-sm font-semibold">Meals</div>
+                  <div class="text-xs text-gray-500">Smart meal plans</div>
+                </div>
+              </li>
+              <li class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">📊</div>
+                <div>
+                  <div class="text-sm font-semibold">Progress</div>
+                  <div class="text-xs text-gray-500">Track & improve</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -right-12 -top-8 w-64 h-64 bg-gradient-to-br from-pink-300 to-purple-400 rounded-full opacity-30 blur-3xl"></div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 max-w-md mx-auto">
+              <div class="text-sm font-medium text-gray-500">Sample Daily Plan</div>
+              <div class="mt-4 grid grid-cols-2 gap-4">
+                <div class="p-3 bg-gray-50 rounded-lg">
+                  <div class="text-xs text-gray-500">Breakfast</div>
+                  <div class="font-semibold">Oats + Banana</div>
+                  <div class="text-xs text-gray-400">350 kcal</div>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-lg">
+                  <div class="text-xs text-gray-500">Workout</div>
+                  <div class="font-semibold">Full-body HIIT</div>
+                  <div class="text-xs text-gray-400">30 min</div>
+                </div>
+
+                <div class="p-3 bg-gray-50 rounded-lg">
+                  <div class="text-xs text-gray-500">Lunch</div>
+                  <div class="font-semibold">Grilled Chicken Bowl</div>
+                  <div class="text-xs text-gray-400">600 kcal</div>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-lg">
+                  <div class="text-xs text-gray-500">Snack</div>
+                  <div class="font-semibold">Greek Yogurt</div>
+                  <div class="text-xs text-gray-400">150 kcal</div>
+                </div>
+              </div>
+
+              <div class="mt-6 text-xs text-gray-500">Want a plan like this tailored for you? Click Start Free.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-2xl font-bold">Features</h2>
+          <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Everything you need to reach your fitness goals with AI assistance.</p>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 bg-white rounded-lg shadow">
+            <div class="text-3xl">🤖</div>
+            <a href="http://127.0.0.1:5500/Ai%20Planner%20Page.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">AI Personalized Plans</a>
+            <p class="mt-2 text-sm text-gray-500">Plans adapt based on progress and preferences.</p>
+          </div>
+
+          <div class="p-6 bg-white rounded-lg shadow">
+            <div class="text-3xl">🍽️</div>
+            <a href="http://127.0.0.1:5500/Smart%20Meal%20Generator.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">Smart Meal Generator</a>
+            <p class="mt-2 text-sm text-gray-500">Recipes, macros, and shopping lists.</p>
+          </div>
+
+          <div class="p-6 bg-white rounded-lg shadow">
+            <div class="text-3xl">📈</div>
+            <a href="http://127.0.0.1:5500/Progress%20Analytics%20Page.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">Progress Analytics</a>
+            <p class="mt-2 text-sm text-gray-500">Track weight, calories, and workouts.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow">
+            <div class="text-3xl">🍽️</div>
+            <a href="" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">Meal-Planner</a>
+            <p class="mt-2 text-sm text-gray-500">Recipes, macros, and shopping lists.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-12 bg-gradient-to-b from-white to-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold">How it works</h2>
+        <p class="mt-2 text-gray-600">Three simple steps to get started.</p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 bg-white rounded-lg shadow">
+            <div class="text-2xl font-bold">1</div>
+            <h4 class="mt-3 font-semibold">Tell us about you</h4>
+            <p class="mt-2 text-sm text-gray-500">Enter goals, preferences and fitness level.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow">
+            <div class="text-2xl font-bold">2</div>
+            <h4 class="mt-3 font-semibold">Get AI Plan</h4>
+            <p class="mt-2 text-sm text-gray-500">Receive meals & workouts tailored to you.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow">
+            <div class="text-2xl font-bold">3</div>
+            <h4 class="mt-3 font-semibold">Track & Improve</h4>
+            <p class="mt-2 text-sm text-gray-500">Log progress and watch the plan evolve.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold">Pricing</h2>
+        <p class="mt-2 text-gray-600">Free to start. Upgrade for advanced features.</p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 bg-white rounded-lg shadow">
+            <h3 class="font-semibold">Free</h3>
+            <div class="mt-4 text-3xl font-bold">$0</div>
+            <p class="mt-2 text-sm text-gray-500">Basic plans & tracking</p>
+            <a href="http://localhost/Ai%20Health%20&%20Fitness/register.php" class="mt-4 inline-block px-4 py-2 border rounded-md">Get Started</a>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow border-2 border-blue-100">
+            <h3 class="font-semibold">Pro</h3>
+            <div class="mt-4 text-3xl font-bold">$7/mo</div>
+            <p class="mt-2 text-sm text-gray-500">Personalized weekly plans</p>
+            <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md">Choose Pro</a>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow">
+            <h3 class="font-semibold">Premium</h3>
+            <div class="mt-4 text-3xl font-bold">$15/mo</div>
+            <p class="mt-2 text-sm text-gray-500">Wearable sync & 1:1 coaching</p>
+            <a href="#" class="mt-4 inline-block px-4 py-2 border rounded-md">Choose Premium</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-12 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold">What people say</h2>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <p class="text-sm">"FitAI made meal planning so easy — I lost 6 kg in 2 months."</p>
+            <div class="mt-4 font-semibold">— Anjali</div>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <p class="text-sm">"Workouts are short and brutal — love the progress analytics."</p>
+            <div class="mt-4 font-semibold">— Rohit</div>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-lg">
+            <p class="text-sm">"The shopping list feature saved me so much time."</p>
+            <div class="mt-4 font-semibold">— Priya</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY PREVIEW -->
+    <section id="community" class="py-12 bg-gradient-to-b from-gray-50 to-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold">Join challenges</h2>
+        <p class="mt-2 text-gray-600">Buddy up, compete and win badges.</p>
+        <div class="mt-6 flex justify-center">
+          <a href="#" class="px-6 py-3 bg-green-500 text-white rounded-md">Explore Challenges</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row justify-between gap-6">
+          <div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white font-bold">AI</div>
+              <div>
+                <div class="font-semibold">FitAI</div>
+                <div class="text-xs text-gray-500">AI Health & Fitness Planner</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-gray-600">
+            <div>
+              <div class="font-semibold">Product</div>
+              <ul class="mt-2 space-y-2">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#how">How it works</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="font-semibold">Company</div>
+              <ul class="mt-2 space-y-2">
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="font-semibold">Legal</div>
+              <ul class="mt-2 space-y-2">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="font-semibold">Follow</div>
+              <ul class="mt-2 space-y-2">
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-xs text-gray-400">© 2025 FitAI. All rights reserved.</div>
+      </div>
+    </footer>
+  </main>
+
+</body>
+</html>
+

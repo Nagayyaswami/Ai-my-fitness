@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex justify-center items-start py-10">
+  <div class="w-full max-w-3xl bg-white p-6 rounded-xl shadow-lg space-y-6">
+    <h1 class="text-2xl font-bold text-gray-800">⚙️ Settings</h1>
+
+    <!-- Profile Section -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold text-gray-700">👤 Profile</h2>
+      <form id="profileForm" class="space-y-3">
+        <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded">
+        <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded">
+        <input type="number" id="age" placeholder="Age" class="w-full p-2 border rounded">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Profile</button>
+      </form>
+      <p id="profileMessage" class="text-green-600 text-sm"></p>
+    </section>
+
+    <hr>
+
+    <!-- Subscription Section -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold text-gray-700">💳 Subscription</h2>
+      <p id="subscriptionPlan" class="text-gray-600">Current Plan: Free</p>
+      <div class="space-x-2">
+        <button onclick="updateSubscription('Premium')" class="bg-purple-600 text-white px-4 py-2 rounded">Upgrade</button>
+        <button onclick="updateSubscription('Free')" class="bg-gray-500 text-white px-4 py-2 rounded">Downgrade</button>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Notifications Section -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold text-gray-700">🔔 Notifications</h2>
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" id="emailNoti" class="w-4 h-4"> <span>Email Notifications</span>
+      </label>
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" id="smsNoti" class="w-4 h-4"> <span>SMS Notifications</span>
+      </label>
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" id="pushNoti" class="w-4 h-4"> <span>Push Notifications</span>
+      </label>
+      <button onclick="saveNotifications()" class="bg-green-600 text-white px-4 py-2 rounded">Save Notifications</button>
+      <p id="notificationMessage" class="text-green-600 text-sm"></p>
+    </section>
+
+    <hr>
+
+    <!-- Logout -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold text-gray-700">🚪 Logout</h2>
+      <button onclick="logout()" class="bg-red-600 text-white px-4 py-2 rounded">Logout</button>
+      <p id="logoutMessage" class="text-red-600 text-sm"></p>
+    </section>
+  </div>
+
+  <script>
+    // Load saved data
+    window.onload = () => {
+      document.getElementById("name").value = localStorage.getItem("name") || "";
+      document.getElementById("email").value = localStorage.getItem("email") || "";
+      document.getElementById("age").value = localStorage.getItem("age") || "";
+      document.getElementById("subscriptionPlan").innerText = "Current Plan: " + (localStorage.getItem("plan") || "Free");
+      document.getElementById("emailNoti").checked = localStorage.getItem("emailNoti") === "true";
+      document.getElementById("smsNoti").checked = localStorage.getItem("smsNoti") === "true";
+      document.getElementById("pushNoti").checked = localStorage.getItem("pushNoti") === "true";
+    };
+
+    // Profile Save
+    document.getElementById("profileForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      localStorage.setItem("name", document.getElementById("name").value);
+      localStorage.setItem("email", document.getElementById("email").value);
+      localStorage.setItem("age", document.getElementById("age").value);
+      document.getElementById("profileMessage").innerText = "✅ Profile saved successfully!";
+    });
+
+    // Subscription Update
+    function updateSubscription(plan) {
+      localStorage.setItem("plan", plan);
+      document.getElementById("subscriptionPlan").innerText = "Current Plan: " + plan;
+    }
+
+    // Notifications Save
+    function saveNotifications() {
+      localStorage.setItem("emailNoti", document.getElementById("emailNoti").checked);
+      localStorage.setItem("smsNoti", document.getElementById("smsNoti").checked);
+      localStorage.setItem("pushNoti", document.getElementById("pushNoti").checked);
+      document.getElementById("notificationMessage").innerText = "✅ Notifications saved!";
+    }
+
+    // Logout
+    function logout() {
+      localStorage.clear();
+      document.getElementById("logoutMessage").innerText = "🚪 You have been logged out!";
+      setTimeout(() => window.location.reload(), 1500);
+    }
+  </script>
+</body>
+</html>

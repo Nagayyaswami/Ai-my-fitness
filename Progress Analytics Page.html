@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Analytics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-purple-600">Progress Analytics</h1>
+    <nav>
+      <a href="http://localhost/Ai%20Health%20&%20Fitness/index.php" class="px-4 text-gray-600 hover:text-purple-600">Home</a>
+      <a href="" class="px-4 text-gray-600 hover:text-purple-600">Dashboard</a>
+      <a href="http://localhost/Ai%20Health%20&%20Fitness/login.php" class="px-4 text-gray-600 hover:text-purple-600">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto p-6 space-y-8">
+    <h2 class="text-xl font-bold text-gray-700">Track Your Progress</h2>
+
+    <!-- Weight Progress Chart -->
+    <section class="bg-white shadow rounded-lg p-6">
+      <h3 class="text-lg font-semibold mb-4 text-gray-700">Weight Progress (kg)</h3>
+      <canvas id="weightChart" height="100"></canvas>
+    </section>
+
+    <!-- Calories In/Out Chart -->
+    <section class="bg-white shadow rounded-lg p-6">
+      <h3 class="text-lg font-semibold mb-4 text-gray-700">Calories In vs Out</h3>
+      <canvas id="calorieChart" height="100"></canvas>
+    </section>
+
+    <!-- Workout Completion Chart -->
+    <section class="bg-white shadow rounded-lg p-6">
+      <h3 class="text-lg font-semibold mb-4 text-gray-700">Workout Completion</h3>
+      <canvas id="workoutChart" height="100"></canvas>
+    </section>
+  </main>
+
+  <!-- Script for Charts -->
+  <script>
+    // Weight Progress Chart
+    const weightCtx = document.getElementById('weightChart').getContext('2d');
+    new Chart(weightCtx, {
+      type: 'line',
+      data: {
+        labels: ['Day 1', 'Day 5', 'Day 10', 'Day 15', 'Day 20'],
+        datasets: [{
+          label: 'Weight (kg)',
+          data: [70, 69.5, 69, 68.5, 68],
+          borderColor: 'rgb(106, 90, 205)',
+          backgroundColor: 'rgba(106, 90, 205, 0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      }
+    });
+
+    // Calories Chart
+    const calorieCtx = document.getElementById('calorieChart').getContext('2d');
+    new Chart(calorieCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        datasets: [
+          {
+            label: 'Calories In',
+            data: [2000, 2100, 1900, 2200, 2050],
+            backgroundColor: 'rgba(60, 179, 113, 0.7)'
+          },
+          {
+            label: 'Calories Out',
+            data: [1800, 2000, 1750, 2100, 1900],
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'
+          }
+        ]
+      },
+      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+
+    // Workout Completion Chart
+    const workoutCtx = document.getElementById('workoutChart').getContext('2d');
+    new Chart(workoutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'Missed'],
+        datasets: [{
+          data: [12, 3],
+          backgroundColor: ['rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)']
+        }]
+      }
+    });
+  </script>
+</body>
+</html>

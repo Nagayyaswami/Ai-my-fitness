@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Meal Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-600">Smart Meal Generator</h1>
+    <nav>
+      <a href="http://localhost/Ai%20Health%20&%20Fitness/index.php" class="px-4 text-gray-600 hover:text-green-600">Home</a>
+      <a href="http://127.0.0.1:5500/Smart%20Meal%20Generator.html" class="px-4 text-gray-600 hover:text-green-600">Dashboard</a>
+      <a href="http://localhost/Ai%20Health%20&%20Fitness/login.php" class="px-4 text-gray-600 hover:text-green-600">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto p-6">
+    <h2 class="text-xl font-bold mb-4 text-gray-700">Generate Your Smart Meal Plan</h2>
+
+    <!-- Form -->
+    <form id="mealForm" class="bg-white shadow rounded-lg p-6 space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Daily Calorie Target</label>
+        <input type="number" name="calories" placeholder="e.g., 2000" class="mt-1 w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500" required />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Diet Preference</label>
+        <select name="diet" class="mt-1 w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
+          <option value="veg">Vegetarian</option>
+          <option value="nonveg">Non-Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="keto">Keto</option>
+          <option value="paleo">Paleo</option>
+        </select>
+      </div>
+
+      <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700">Generate Meals</button>
+    </form>
+
+    <!-- Output -->
+    <section id="mealOutput" class="mt-6 hidden bg-yellow-50 p-6 rounded-lg shadow">
+      <h3 class="text-lg font-bold text-yellow-700 mb-2">Your AI-Generated Meal Plan</h3>
+      <ul id="mealList" class="list-disc list-inside text-gray-700 space-y-2"></ul>
+    </section>
+  </main>
+
+  <!-- Script -->
+  <script>
+    const mealForm = document.getElementById('mealForm');
+    const mealOutput = document.getElementById('mealOutput');
+    const mealList = document.getElementById('mealList');
+
+    mealForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      mealOutput.classList.remove('hidden');
+
+      // Mock AI meals (replace with backend integration)
+      const sampleMeals = [
+        "🥗 Breakfast: Greek Yogurt with Berries & Nuts",
+        "🍛 Lunch: Grilled Salmon with Quinoa & Spinach",
+        "🍎 Snack: Apple + Peanut Butter",
+        "🍲 Dinner: Lentil Soup with Whole Grain Bread"
+      ];
+
+      mealList.innerHTML = sampleMeals.map(meal => `<li>${meal}</li>`).join('');
+    });
+  </script>
+</body>
+</html>

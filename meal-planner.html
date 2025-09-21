@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header class="bg-green-600 text-white p-4 text-center shadow-md">
+    <h1 class="text-2xl font-bold">🍽 Meal Planner</h1>
+    <p class="text-sm">Plan your meals • Track nutrition • Build your shopping list</p>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-6 space-y-10">
+    <!-- Daily Meals -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4">📅 Daily Meals</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Breakfast -->
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="font-bold text-lg">🥞 Breakfast</h3>
+          <ul id="breakfast" class="list-disc pl-6 mt-2 text-gray-600">
+            <li>Oatmeal with fruits</li>
+            <li>1 boiled egg</li>
+          </ul>
+        </div>
+        <!-- Lunch -->
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="font-bold text-lg">🍛 Lunch</h3>
+          <ul id="lunch" class="list-disc pl-6 mt-2 text-gray-600">
+            <li>Grilled chicken breast</li>
+            <li>Brown rice & veggies</li>
+          </ul>
+        </div>
+        <!-- Dinner -->
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="font-bold text-lg">🍲 Dinner</h3>
+          <ul id="dinner" class="list-disc pl-6 mt-2 text-gray-600">
+            <li>Salmon with quinoa</li>
+            <li>Steamed broccoli</li>
+          </ul>
+        </div>
+        <!-- Snacks -->
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="font-bold text-lg">🍎 Snacks</h3>
+          <ul id="snacks" class="list-disc pl-6 mt-2 text-gray-600">
+            <li>Greek yogurt</li>
+            <li>Mixed nuts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nutrition Breakdown -->
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">🥗 Nutrition Breakdown</h2>
+      <table class="w-full border-collapse text-center">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="border p-2">Meal</th>
+            <th class="border p-2">Calories</th>
+            <th class="border p-2">Protein (g)</th>
+            <th class="border p-2">Carbs (g)</th>
+            <th class="border p-2">Fats (g)</th>
+          </tr>
+        </thead>
+        <tbody id="nutritionTable">
+          <tr>
+            <td class="border p-2">Breakfast</td>
+            <td class="border p-2">350</td>
+            <td class="border p-2">15</td>
+            <td class="border p-2">45</td>
+            <td class="border p-2">10</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Lunch</td>
+            <td class="border p-2">600</td>
+            <td class="border p-2">40</td>
+            <td class="border p-2">55</td>
+            <td class="border p-2">20</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Dinner</td>
+            <td class="border p-2">500</td>
+            <td class="border p-2">35</td>
+            <td class="border p-2">40</td>
+            <td class="border p-2">18</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Snacks</td>
+            <td class="border p-2">250</td>
+            <td class="border p-2">12</td>
+            <td class="border p-2">20</td>
+            <td class="border p-2">12</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="bg-gray-100 font-bold">
+            <td class="border p-2">Total</td>
+            <td class="border p-2" id="totalCalories">1700</td>
+            <td class="border p-2" id="totalProtein">102</td>
+            <td class="border p-2" id="totalCarbs">160</td>
+            <td class="border p-2" id="totalFats">60</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <!-- Shopping List -->
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">🛒 Shopping List</h2>
+      <ul id="shoppingList" class="list-disc pl-6 text-gray-700">
+        <li>Oats</li>
+        <li>Fruits</li>
+        <li>Eggs</li>
+        <li>Chicken breast</li>
+        <li>Brown rice</li>
+        <li>Vegetables</li>
+        <li>Salmon</li>
+        <li>Quinoa</li>
+        <li>Broccoli</li>
+        <li>Greek yogurt</li>
+        <li>Mixed nuts</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-white text-center p-4 mt-10">
+    © 2025 Meal Planner. All rights reserved.
+  </footer>
+</body>
+</html>
